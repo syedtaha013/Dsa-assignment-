@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+ char s1[50], s2[50];
+ int result;
+ printf("Enter first string: ");
+ scanf("%s", s1);
+ printf("Enter second string: ");
+ scanf("%s", s2);
+ result = strcmp(s1, s2);
+ if(result == 0)
+ printf("Both strings are equal");
+ else if(result > 0)
+ printf("First string is greater");
+ else
+ printf("Second string is greater");
+ system("getmac");
+ return 0;
+}
