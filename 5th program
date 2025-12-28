@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+ int r, c, i, j;
+ int *a;
+ printf("Enter rows and columns: ");
+ scanf("%d %d", &r, &c);
+ a = malloc(r * c * sizeof(int));
+ printf("Enter elements:\n");
+ for (i = 0; i < r; i++)
+ for (j = 0; j < c; j++)
+ scanf("%d", &a[i * c + j]);
+ printf("Array:\n");
+ for (i = 0; i < r; i++)
+ {
+ for (j = 0; j < c; j++)
+printf("%d ", a[i * c + j]);
+ printf("\n");
+ }
+ system("getmac");
+ return 0;
+}
