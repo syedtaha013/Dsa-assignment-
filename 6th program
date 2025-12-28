@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char s[100], p[50];
+ printf("Enter main string: ");
+ scanf("%s", s);
+ printf("Enter pattern: ");
+ scanf("%s", p);
+ if (strstr(s, p) != NULL)
+ printf("Pattern found");
+ else
+ printf("Pattern not found");
+ system("getmac");
+ return 0;
+}
