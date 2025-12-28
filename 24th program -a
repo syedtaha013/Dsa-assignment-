@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *next;
+};
+struct node *adj[10];
+int visited[10];
+int stack[10], top=-1;
+void push(int v)
+{
+ stack[++top]=v;
+}
+int pop()
+{
+ return stack[top--];
+}
+int main()
+{
+ int n,e,i,u,v,start;
+ struct node *newnode;
+ printf("Enter number of vertices: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+ adj[i]=NULL;
+ visited[i]=0;
+ }
+ printf("Enter number of edges: ");
+ scanf("%d",&e);
+ for(i=0;i<e;i++)
+ {
+ scanf("%d%d",&u,&v);
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->data=v;
+ newnode->next=adj[u];
+ adj[u]=newnode;
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->data=u;
+ newnode->next=adj[v];
+ adj[v]=newnode;
+ }
+ printf("Enter starting vertex: ");
+ scanf("%d",&start);
+ push(start);
+ printf("DFS traversal: ");
+ while(top!=-1)
+ {
+ v=pop();
+ if(visited[v]==0)
+ {
+ printf("%d ",v);
+ visited[v]=1;
+ newnode=adj[v];
+ while(newnode!=NULL)
+ {
+ if(visited[newnode->data]==0)
+ push(newnode->data);
+ newnode=newnode->next;
+ }
+ }
+ }
+system("getmac");
+ return 0;
+}
