@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *left,*right;
+};
+struct node* createNode(int val)
+{
+ struct node *n=(struct node*)malloc(sizeof(struct node));
+ n->data=val;
+ n->left=NULL;
+ n->right=NULL;
+ return n;
+}
+int main()
+{
+ struct node *root=NULL,*queue[50];
+ int front=0,rear=0;
+ int n,i,val,lval,rval;
+ printf("Enter number of nodes: ");
+ scanf("%d",&n);
+ printf("Enter root value: ");
+ scanf("%d",&val);
+ root=createNode(val);
+ queue[rear++]=root;
+ for(i=1;i<n;i++)
+ {
+ struct node *current=queue[front++];
+ printf("Enter left child of %d (-1 for no node): ",current->data);
+ scanf("%d",&lval);
+ if(lval!=-1)
+ {
+ current->left=createNode(lval);
+ queue[rear++]=current->left;
+ i++;
+ if(i>=n) break;
+}
+ printf("Enter right child of %d (-1 for no node): ",current->data);
+ scanf("%d",&rval);
+ if(rval!=-1)
+ {
+ current->right=createNode(rval);
+ queue[rear++]=current->right;
+ }
+ }
+ printf("Tree created successfully\n");
+system("getmac"); 
+ return 0;
+}
