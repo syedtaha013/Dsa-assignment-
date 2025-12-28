@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main()
+{
+ int a;
+ printf("Enter a number: ");
+ scanf("%d", &a);
+ a--;
+ printf("After post-decrement: %d\n", a);
+ system("getmac");
+ return 0;
+}
