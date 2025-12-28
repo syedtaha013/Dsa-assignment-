@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *next;
+};
+int main()
+{
+ struct node *top=NULL,*newnode=NULL,*temp=NULL;
+ int choice,value;
+ while(1)
+ {
+ printf("\n1 Push\n2 Pop\n3 Display\n4 Exit\n");
+ printf("Enter your choice: ");
+ scanf("%d",&choice);
+ if(choice==1)
+ {
+ newnode=(struct node*)malloc(sizeof(struct node));
+ printf("Enter value: ");
+ scanf("%d",&value);
+ newnode->data=value;
+ newnode->next=top;
+ top=newnode;
+ }
+ else if(choice==2)
+ {
+ if(top==NULL)
+ printf("Stack is empty\n");
+ else
+ {
+ temp=top;
+ printf("Deleted element: %d\n",temp->data);
+ top=top->next;
+ free(temp);
+ }
+ }
+ else if(choice==3)
+ {
+ if(top==NULL)
+ printf("Stack is empty\n");
+ else
+ {
+ temp=top;
+ printf("Stack elements: ");
+ while(temp!=NULL)
+ {
+ printf("%d ",temp->data);
+ temp=temp->next;
+ }
+ printf("\n");
+ }
+ }
+ else if(choice==4)
+ {
+ break;
+ }
+ else
+ {
+ printf("Invalid choice\n");
+ }
+ }
+system("getmac"); 
+ return 0;
+}
