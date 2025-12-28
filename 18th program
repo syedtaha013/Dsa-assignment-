@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main()
+{
+ int tree[50],n,i;
+ printf("Enter number of nodes: ");
+ scanf("%d",&n);
+ printf("Enter tree elements:\n");
+ for(i=0;i<n;i++)
+ scanf("%d",&tree[i]);
+ printf("Tree structure:\n");
+ for(i=0;i<n;i++)
+ {
+ printf("Node %d: %d",i,tree[i]);
+ if(2*i+1<n)
+ printf(" Left=%d",tree[2*i+1]);
+ else
+ printf(" Left=NULL");
+ if(2*i+2<n)
+ printf(" Right=%d",tree[2*i+2]);
+ else
+ printf(" Right=NULL");
+ printf("\n");
+ }
+system("getmac"); 
+ return 0;
+}
