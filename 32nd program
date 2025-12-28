@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int row,col,val;
+ struct node *next;
+};
+int main()
+{
+ struct node *head=NULL,*temp=NULL,*newnode=NULL;
+ int r,c,i,j,x;
+ printf("Enter number of rows and columns: ");
+ scanf("%d%d",&r,&c);
+ printf("Enter matrix elements:\n");
+ for(i=0;i<r;i++)
+ {
+ for(j=0;j<c;j++)
+ {
+ scanf("%d",&x);
+ if(x!=0)
+ {
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->row=i;
+ newnode->col=j;
+ newnode->val=x;
+ newnode->next=NULL;
+ if(head==NULL)
+ {
+ head=newnode;
+ temp=newnode;
+ }
+ else
+ {
+ temp->next=newnode;
+ temp=newnode;
+ }
+ }
+ }
+ }
+ printf("Sparse Matrix (row col value):\n");
+ temp=head;
+ while(temp!=NULL)
+ {
+ printf("%d %d %d\n",temp->row,temp->col,temp->val);
+ temp=temp->next;
+ }
+system(“getmac”)
+ return 0;
+}
