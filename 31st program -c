@@ -1,0 +1,65 @@
+#include<stdio.h>
+#define SIZE 5
+int main()
+{
+ int q[SIZE], front=-1, rear=-1;
+ int choice, value;
+ while(1)
+ {
+ printf("\n1 Enqueue\n2 Dequeue\n3 Display\n4 Exit\n");
+ printf("Enter your choice: ");
+ scanf("%d",&choice);
+ if(choice==1)
+ {
+ if((rear+1)%SIZE==front)
+ printf("Queue is full\n");
+ else
+ {
+ printf("Enter value: ");
+ scanf("%d",&value);
+ if(front==-1)
+ front=0;
+ rear=(rear+1)%SIZE;
+ q[rear]=value;
+ }
+ }
+
+ else if(choice==2)
+ {
+ if(front==-1)
+ printf("Queue is empty\n");
+ else
+ {
+ printf("Deleted element: %d\n",q[front]);
+ if(front==rear)
+ front=rear=-1;
+ else
+ front=(front+1)%SIZE;
+ }
+ }
+ else if(choice==3)
+ {
+ if(front==-1)
+ printf("Queue is empty\n");
+ else
+ {
+ int i=front;
+ printf("Queue elements: ");
+ while(1)
+ {
+ printf("%d ",q[i]);
+ if(i==rear)
+ break;
+ i=(i+1)%SIZE;
+ }
+ printf("\n");
+ }
+ }
+ else if(choice==4)
+ break;
+ else
+ printf("Invalid choice\n");
+ }
+ system("getmac");
+ return 0;
+}
