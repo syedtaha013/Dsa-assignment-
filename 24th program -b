@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *next;
+};
+struct node *adj[10];
+int visited[10];
+int queue[10];
+int rear=-1;
+void insert(int v)
+{
+ queue[++rear]=v;
+}
+int removeq()
+{
+ return queue[rear--];
+}
+int main()
+{
+ int n,e,i,u,v,start;
+ struct node *temp;
+ printf("Enter number of vertices: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+ adj[i]=NULL;
+ visited[i]=0;
+ }
+ printf("Enter number of edges: ");
+ scanf("%d",&e);
+ for(i=0;i<e;i++)
+ {
+ scanf("%d%d",&u,&v);
+ temp=(struct node*)malloc(sizeof(struct node));
+ temp->data=v;
+ temp->next=adj[u];
+ adj[u]=temp;
+ temp=(struct node*)malloc(sizeof(struct node));
+ temp->data=u;
+ temp->next=adj[v];
+ adj[v]=temp;
+ }
+ printf("Enter starting vertex: ");
+ scanf("%d",&start);
+ insert(start);
+ printf("DFS traversal: ");
+ while(rear!=-1)
+ {
+ v=removeq();
+ if(visited[v]==0)
+ {
+ printf("%d ",v);
+ visited[v]=1;
+ temp=adj[v];
+ while(temp!=NULL)
+ {
+ if(visited[temp->data]==0)
+ insert(temp->data);
+ temp=temp->next;
+ }
+ }
+ }
+system("getmac");
+ return 0;
+}
