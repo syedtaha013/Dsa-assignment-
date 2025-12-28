@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define SIZE 20
+int main()
+{
+ int q[SIZE], front = 0, rear = -1, ch, x;
+ while (1)
+ {
+ printf("\n1 Insert\n2 Delete\n3 Display\n4 Exit\n");
+ scanf("%d", &ch);
+ if (ch == 1)
+ {
+ if (rear == SIZE - 1)
+ printf("Queue Full");
+ else
+ {
+ scanf("%d", &x);
+ q[++rear] = x;
+ }
+ }
+ else if (ch == 2)
+ {
+ if (front > rear)
+ printf("Queue Empty");
+ else
+ printf("Deleted: %d", q[front++]);
+ }
+ else if (ch == 3)
+ {
+ if (front > rear)
+ printf("Queue Empty");
+ else
+ {
+ for (int i = front; i <= rear; i++)
+ printf("%d ", q[i]);
+ }
+
+ }
+ else
+ break;
+ }
+ system("getmac");
+ return 0;
+}
