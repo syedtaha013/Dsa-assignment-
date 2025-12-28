@@ -1,0 +1,78 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *left,*right;
+};
+struct node* create(int val)
+{
+ struct node *n=(struct node*)malloc(sizeof(struct node));
+ n->data=val;
+ n->left=NULL;
+ n->right=NULL;
+ return n;
+}
+struct node* insert(struct node *root,int val)
+{
+ if(root==NULL)
+ return create(val);
+ if(val < root->data)
+ root->left=insert(root->left,val);
+ else
+ root->right=insert(root->right,val);
+ return root;
+}
+struct node* findMin(struct node *root)
+{
+ while(root->left!=NULL)
+ root=root->left;
+ return root;
+}
+struct node* deleteNode(struct node *root,int val)
+{
+ if(root==NULL)
+ return root;
+ if(val < root->data)
+ root->left=deleteNode(root->left,val);
+ else if(val > root->data)
+ root->right=deleteNode(root->right,val);
+ else
+ {
+ if(root->left==NULL)
+ {
+struct node *temp=root->right;
+ free(root);
+ return temp;
+ }
+ else if(root->right==NULL)
+ {
+ struct node *temp=root->left;
+ free(root);
+ return temp;
+ }
+ struct node *temp=findMin(root->right);
+ root->data=temp->data;
+ root->right=deleteNode(root->right,temp->data);
+ }
+ return root;
+}
+int main()
+{
+ struct node *root=NULL;
+ int n,i,val,del;
+ printf("Enter number of nodes: ");
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {
+ printf("Enter value: ");
+ scanf("%d",&val);
+ root=insert(root,val);
+ }
+printf("Enter value to delete: ");
+ scanf("%d",&del);
+ root=deleteNode(root,del);
+ printf("Node deleted successfully\n");
+system("getmac"); 
+ return 0;
+}
